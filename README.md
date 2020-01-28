@@ -15,7 +15,7 @@
 		500-1000 veya 1000-int.max arasından hangi aralıkta üretileceği random karar verilmekte sonrasında ilgili aralık değerlerinde rastgele bir skor üretilmektedir.
 	
 2. Uygulamalar Docker Container ile ayağa kaldırılmıştır. Her uygulama için swagger oluşturulmuştur.
-http://localhost:51222/						 - CreditScore.API
+http://localhost:51222/			     - CreditScore.API
 http://localhost:52536/swagger/index.html    - UI
 http://localhost:59767/swagger/index.html    - CreditConfirmation.API
 
@@ -26,7 +26,7 @@ http://localhost:59767/swagger/index.html    - CreditConfirmation.API
 	
 docker-compose.yml
 
-	version: '3.4'
+version: '3.4'
 
 services:
   creditscore.api:
