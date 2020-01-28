@@ -23,32 +23,31 @@ namespace CreditConfirmation.Web.API.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CalculateCredit(CustomerModel customerModel)
+        public async Task<IActionResult> Index(CustomerModel customerModel)
         {
-            await _creditConfirmationService.ConfirmCreditForUser(customerModel);
-            return View();
-        }
+            var result = await _creditConfirmationService.ConfirmCreditForUser(customerModel);
+            if(result == null)
+            {
+                ViewData["Message"] = "An error occured. Please try again.";
+                return View();
+            }
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Credit Confirmation Result ";
+            ViewData["Confirmed"] = "Your credit application is ";
 
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            if (result.Confirmed)
+            {
+                ViewData["Confirmed"] += "confirmed.";
+                ViewData["Limit"] = "Confirmed Limit is " + result.Limit;
+            }
+            else
+            {
+                ViewData["Confirmed"] += "denied.";
+                ViewData["Limit"] = "";
+            }
+            return View("Index");
         }
         
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

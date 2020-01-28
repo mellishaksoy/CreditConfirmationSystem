@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CreditConfirmation.API.Domain
 {
-    public interface IUserRepository : IMongoRepository<UserEntity>
+    public interface ICreditApplicationRepository : IMongoRepository<CreditApplication>
     {
 
     }

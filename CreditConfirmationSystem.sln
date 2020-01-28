@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditConfirmation.API", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditConfirmation.Web.API", "CreditConfirmation.Web.API\CreditConfirmation.Web.API.csproj", "{9D03CC02-2DA8-43AE-B8E8-39F6B217EA92}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditSystem.Common", "CreditSystem.Common\CreditSystem.Common.csproj", "{BD4303FF-BB2C-4794-AD4C-5FBFC86F5DDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessHandler", "DataAccessHandler\DataAccessHandler.csproj", "{73E32B35-165C-495B-94FA-96C934B17C83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessHandler", "DataAccessHandler\DataAccessHandler.csproj", "{73E32B35-165C-495B-94FA-96C934B17C83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditScore.API", "CreditScore.API\CreditScore.API.csproj", "{F52BD496-7963-44CB-A58E-36AC2E513F28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,14 @@ Global
 		{9D03CC02-2DA8-43AE-B8E8-39F6B217EA92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D03CC02-2DA8-43AE-B8E8-39F6B217EA92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D03CC02-2DA8-43AE-B8E8-39F6B217EA92}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BD4303FF-BB2C-4794-AD4C-5FBFC86F5DDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD4303FF-BB2C-4794-AD4C-5FBFC86F5DDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD4303FF-BB2C-4794-AD4C-5FBFC86F5DDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD4303FF-BB2C-4794-AD4C-5FBFC86F5DDE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{73E32B35-165C-495B-94FA-96C934B17C83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{73E32B35-165C-495B-94FA-96C934B17C83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73E32B35-165C-495B-94FA-96C934B17C83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73E32B35-165C-495B-94FA-96C934B17C83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F52BD496-7963-44CB-A58E-36AC2E513F28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F52BD496-7963-44CB-A58E-36AC2E513F28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F52BD496-7963-44CB-A58E-36AC2E513F28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F52BD496-7963-44CB-A58E-36AC2E513F28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

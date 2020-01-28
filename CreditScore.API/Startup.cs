@@ -1,18 +1,21 @@
-﻿using CreditConfirmation.API.Application.Services;
-using CreditConfirmation.API.Domain;
-using CreditConfirmation.API.Infrastructure.Repositories;
-using CreditConfirmation.API.Settings;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using CreditScore.API.Application.Services;
+using CreditScore.API.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using System;
-using System.IO;
 
-namespace CreditConfirmation.API
+namespace CreditScore.API
 {
     public class Startup
     {
@@ -51,9 +54,6 @@ namespace CreditConfirmation.API
                     break;
             }
 
-            var configuration = builder.Build();
-            services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
-
             #region Swagger Configuration 
 
             services.AddSwaggerGen(options =>
@@ -69,30 +69,8 @@ namespace CreditConfirmation.API
             });
             #endregion
 
-            services.Configure<DbSettings>(options =>
-            {
-                options.ConnectionString
-                    = Configuration.GetSection("AppSettings:MongoConnection:ConnectionString").Value;
-            });
-            
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
-            services.AddHttpClient("CreditScore.API", c =>
-            {
-                c.BaseAddress = new Uri(Configuration.GetSection("AppSettings:CreditScoreServiceUrl").Value);
-                c.DefaultRequestHeaders.Add("Accept", "application/json");
-            });
-
-            services.AddTransient<ICreditConfirmationService, CreditConfirmationService>();
-            services.AddTransient<ICreditApplicationRepository, CreditApplicationRepository>();
-            services.AddTransient<ICreditLimitFactory, CreditLimitFactory>();
-            
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddTransient<ICreditScoreService, CreditScoreService>();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -106,8 +84,6 @@ namespace CreditConfirmation.API
             {
                 app.UseHsts();
             }
-            app.UseStaticFiles();
-
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

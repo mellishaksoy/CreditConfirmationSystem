@@ -2,8 +2,12 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/CreditScore.API",
+      "sslPort": 0
+    },
     "iisExpress": {
-      "applicationUrl": "http://localhost:59767",
+      "applicationUrl": "http://localhost:52536",
       "sslPort": 0
     }
   },
@@ -16,7 +20,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "CreditConfirmationAPI": {
+    "CreditScore.API": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/values",
@@ -26,6 +30,11 @@
       "applicationUrl": "https://localhost:5001;http://localhost:5000"
     },
     "Docker": {
+      "commandName": "IIS",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}"
+    },
+    "Docker (1)": {
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}"

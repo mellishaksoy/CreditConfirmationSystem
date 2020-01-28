@@ -21,10 +21,10 @@ namespace CreditConfirmation.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult ConfirmCredit([FromBody] UserInformationDto userInformationDto)
+        public async Task<IActionResult> ConfirmCredit([FromBody] UserInformationDto userInformationDto)
         {
-            _creditConfirmationService.AddUser(userInformationDto);
-            return Ok();
+            var result = await _creditConfirmationService.ConfirmUserCredit(userInformationDto);
+            return Ok(result);
         }
     }
 }

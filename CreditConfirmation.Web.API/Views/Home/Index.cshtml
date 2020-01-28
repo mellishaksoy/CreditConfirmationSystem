@@ -2,11 +2,12 @@
     ViewData["Title"] = "Credit Confirmation System";
 }
 @model CreditConfirmation.Web.API.Models.CustomerModel
+
 <div class="row">
     <div class="col-md-32">
         <h2>Please Fill The Required Fields to Apply Credit</h2>
     </div>
-    <form method="post" action="/Home/CalculateCredit">
+    <form method="post" action="/Home/Index">
         <div class="row">
             <div class="col-md-3">
                 <label for="identityNumber">TC Identity Number: </label>
@@ -41,6 +42,14 @@
         </div>
         <div class="row">
             <div class="col-md-3">
+                <label for="email">Email: </label>
+            </div>
+            <div class="col-md-3">
+                <input type="email" id="email" placeholder="example@mail.com" name="Email" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
                 <label for="income">Income (TL): </label>
             </div>
             <div class="col-md-3">
@@ -56,6 +65,15 @@
         </div>
 
     </form>
+</div>
+<div class="row">
+    <div class="col-md-32">
+        <h3>@ViewData["Message"]</h3>
+    </div>
+    <div class="col-md-32">
+        <h5>@ViewData["Confirmed"]</h5>
+        <h5>@ViewData["Limit"]</h5>
+    </div>
 </div>
 
 <script>

@@ -17,32 +17,29 @@ namespace CreditConfirmation.Web.API.Application.Services
     public class CreditConfirmationService : ICreditConfirmationService
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private AppSettings _settings;
 
-        public CreditConfirmationService(IHttpClientFactory httpClientFactory, IOptions<AppSettings> settings)
+        public CreditConfirmationService(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
-            _settings = settings.Value;
         }
 
         public async Task<CreditResponseDto> ConfirmCreditForUser(CustomerModel customerModel)
         {
-            CreditResponseDto creditResponseDto = new CreditResponseDto();
-
             var httpClient = _httpClientFactory.CreateClient("CreditConfirmationApi");
             
-            var response = await httpClient.PostAsJsonAsync(CreditApiUrls.CONFIRM_CREDIT, customerModel);
+            var response = httpClient.PostAsJsonAsync(CreditApiUrls.CONFIRM_CREDIT, customerModel).Result;
 
             if (response.IsSuccessStatusCode)
             {
                 var responseString = await response.Content.ReadAsStringAsync();
+                var creditResponseDto = JsonConvert.DeserializeObject<CreditResponseDto>(responseString);
+                return creditResponseDto;
             }
             else
             {
                 throw new Exception("Error");
             }
-
-            return creditResponseDto;
+            
         }
     }
 }

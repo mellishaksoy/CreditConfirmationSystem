@@ -1,0 +1,19 @@
+FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
+WORKDIR /app
+EXPOSE 80
+
+FROM microsoft/dotnet:2.2-sdk AS build
+WORKDIR /src
+COPY ["CreditConfirmationAPI/CreditConfirmation.API.csproj", "CreditConfirmationAPI/"]
+RUN dotnet restore "CreditConfirmationAPI/CreditConfirmation.API.csproj"
+COPY . .
+WORKDIR "/src/CreditConfirmationAPI"
+RUN dotnet build "CreditConfirmation.API.csproj" -c Release -o /app
+
+FROM build AS publish
+RUN dotnet publish "CreditConfirmation.API.csproj" -c Release -o /app
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app .
+ENTRYPOINT ["dotnet", "CreditConfirmation.API.dll"]

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace CreditConfirmation.API.Infrastructure.Repositories
 {
-    public class UserRepository : BaseMongoRepository<UserEntity>, IUserRepository
+    public class CreditApplicationRepository : BaseMongoRepository<CreditApplication>, ICreditApplicationRepository
     {
-        public UserRepository(IOptions<DbSettings> dbSettings) : base(dbSettings.Value.ConnectionString)
+        public CreditApplicationRepository(IOptions<DbSettings> dbSettings) : base(dbSettings.Value.ConnectionString)
         {
         }
        

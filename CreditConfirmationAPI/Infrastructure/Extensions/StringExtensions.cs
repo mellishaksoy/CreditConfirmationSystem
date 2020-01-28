@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace CreditConfirmation.API.Infrastructure.Extensions
 {
-    public static class IdentityNumberValidationExtensions
+    public static class StringExtensions
     {
-        public static bool ValidateIdentityNumber(string identityNumber)
+        public static bool ValidateIdentityNumber(this string identityNumber)
         {
             bool returnvalue = false;
             if (identityNumber.Length == 11)
@@ -35,6 +37,28 @@ namespace CreditConfirmation.API.Infrastructure.Extensions
                 returnvalue = ((BTCNO * 100) + (Q1 * 10) + Q2 == TcNo);
             }
             return returnvalue;
+        }
+
+        public static void SendEmail(this string htmlString, string fromMailAddress, string toMailAddress, string password)
+        {
+            try
+            {
+                MailMessage message = new MailMessage();
+                SmtpClient smtp = new SmtpClient();
+                message.From = new MailAddress(fromMailAddress);
+                message.To.Add(new MailAddress(toMailAddress));
+                message.Subject = "About Credit Application";
+                message.IsBodyHtml = true; //to make message body as html  
+                message.Body = htmlString;
+                smtp.Port = 587;
+                smtp.Host = "smtp.gmail.com"; //for gmail host  
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential(fromMailAddress, password);
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Send(message);
+            }
+            catch (Exception) { }
         }
     }
 }

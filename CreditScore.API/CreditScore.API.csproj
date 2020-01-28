@@ -1,8 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <DockerTargetOS>Windows</DockerTargetOS>
+    <UserSecretsId>d74911e9-4c33-42b8-bdd5-462066cb85e2</UserSecretsId>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,9 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mapster" Version="4.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.1916590" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.0.0" />
@@ -20,13 +21,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataAccessHandler\DataAccessHandler.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Update="appsettings.Development.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
