@@ -1,6 +1,7 @@
 # CreditConfirmationSystem
 
 1. Sistemde 3 ana servis bulunmaktadır.
+
 	1.1. CreditConfirmation.Web.API
 		.Net Core MVC ile yazılan bu uygulamadan kullanıcı bilgilerini ekrandan alarak kredi onaylaması sonucunu göstermektedir.
 		
