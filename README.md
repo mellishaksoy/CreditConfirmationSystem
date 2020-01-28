@@ -24,23 +24,3 @@ http://localhost:59767/swagger/index.html    - CreditConfirmation.API
 	- Loglama yapılmamıştır.
 	
 	
-docker-compose.yml
-
-version: '3.4'
-
-services:
-  creditscore.api:
-    image: ${DOCKER_REGISTRY}creditscoreapi
-    build:
-      context: .
-      dockerfile: CreditScore.API/Dockerfile
-  creditconfirmation.api:
-    image: ${DOCKER_REGISTRY}creditconfirmationapi
-    build:
-      context: .
-      dockerfile: CreditConfirmation.API/Dockerfile
-  creditconfirmation.web.api:
-    image: ${DOCKER_REGISTRY}creditconfirmationwebapi
-    build:
-      context: .
-      dockerfile: CreditConfirmation.Web.API/Dockerfile
